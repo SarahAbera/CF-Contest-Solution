@@ -1,0 +1,20 @@
+from collections import Counter
+n,m = map(int,input().split())
+price = list(map(int,input().split()))
+price.sort()
+items = []
+for _ in range(m):
+    items.append(input())
+items = Counter(items)
+tup = []
+for key,val in items.items():
+    tup.append((key,val))
+tup.sort(key=lambda x:x[1])
+minimum = 0
+for i in range(len(tup)):
+    minimum += price[i] * tup[-i-1][1]
+maximum = 0
+price.reverse()
+for j in range(len(tup)):
+    maximum += price[j] * tup[-j-1][1]
+print(minimum,maximum)
