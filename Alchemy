@@ -1,0 +1,20 @@
+n = int(input())
+time = list(map(int,input().split()))
+left = 0
+right = n - 1
+alphonse = 0
+edward = 0
+while left < right:
+    if alphonse == edward:
+        edward += time[left]
+        left += 1
+    elif edward > alphonse:
+        alphonse += time[right]
+        right -= 1
+    elif alphonse > edward:
+        edward += time[left]
+        left += 1
+if edward <= alphonse:
+    print(left+1,n-(left+1))
+elif alphonse < edward:
+    print(left,n-left)
