@@ -1,0 +1,16 @@
+t = int(input())
+for _ in range(t):
+    buttons = list(map(str,input()))
+    normal = set()
+    i = 0
+    while i < len(buttons):
+        if i == len(buttons)-1:
+            normal.add(buttons[i])
+            i += 1
+        elif buttons[i] == buttons[i+1]:
+            i += 2
+        elif buttons[i] != buttons[i+1]:
+            normal.add(buttons[i])
+            i += 1
+    normal = sorted(normal)
+    print("".join(normal))
