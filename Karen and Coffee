@@ -1,0 +1,24 @@
+n,k,q = map(int,input().split())
+array = [0]*200002 # one zero for padding on the left and the other for padding on the right
+for _ in range(n):
+    start,end = map(int,input().split())
+    array[start] += 1
+    array[end + 1] -= 1
+
+#Calculating the prefix sum
+for i in range(1,len(array)):
+    array[i] = array[i-1] + array[i]
+
+# finding addmissible recipes
+for j in range(len(array)):
+    if array[j] >= k:
+        array[j] = 1
+    else:
+        array[j] = 0
+
+for i in range(1,len(array)):
+    array[i] += array[i-1]
+
+for _ in range(q):
+    start,end = map(int,input().split())
+    print(array[end] - array[start-1])
