@@ -1,0 +1,41 @@
+def helper(outlets, n):
+    if n < 3:
+        return 0
+        
+    outlets.sort(reverse=True)
+    count,  total = 0, 2
+    
+    for num in outlets:
+        total += num - 1
+        count += 1
+        if total >= n:
+            return count
+        
+    return -1
+
+t = int(input())
+for _ in range(t):
+    n,d = map(int,input().split())
+    outlets = list(map(int,input().split()))
+    print(helper(outlets, n))
+    
+    #####################################################################
+t = int(input())
+for _ in range(t):
+    n,d = map(int,input().split())
+    outlets = list(map(int,input().split()))
+    outlets.sort(reverse=True)
+    total = 2
+    count = 0
+    if n < 3:
+        print(0)
+        continue
+    for num in outlets:
+        total += num - 1
+        count += 1
+        if total >= n:
+            print(count)
+            break
+    if total < n:
+        print(-1)
+        
