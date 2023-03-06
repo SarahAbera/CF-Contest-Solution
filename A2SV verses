@@ -1,0 +1,15 @@
+def helper(students,boundary):
+    count = 0
+    left = 0
+    runSum = 0
+    for right in range(n):
+        runSum += students[right]
+        while runSum > boundary:
+            runSum -= students[left]
+            left += 1
+        count += right - left + 1
+    return count
+
+n,a,b = map(int,input().split())
+students = list(map(int,input().split()))
+print(helper(students,b) - helper(students,a-1))
