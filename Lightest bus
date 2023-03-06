@@ -1,0 +1,13 @@
+t = int(input())
+for _ in range(t):
+    n = int(input())
+    weights = list(map(int,input().split()))
+
+    prefix = [0]
+    for i in range(len(weights)):
+        prefix.append(prefix[i] + weights[i])
+
+    best = prefix[min(12,n)]
+    for i in range(12,n,6):
+        best = min(best,prefix[min(i+12,n)] - prefix[i])
+    print(best)
