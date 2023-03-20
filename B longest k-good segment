@@ -1,0 +1,23 @@
+from collections import defaultdict
+a,k =  map(int,input().split())
+nums = list(map(int,input().split()))
+
+unique = defaultdict(int)
+pairs = defaultdict(list)
+left = 0
+for right in range(a):
+    unique[nums[right]] += 1
+    while len(unique) > k:
+        unique[nums[left]] -= 1
+        if unique[nums[left]] == 0:
+            del unique[nums[left]]
+        left += 1
+    if len(unique) == k:
+        pairs[(right-left)+1].append((left,right))
+
+if len(pairs) == 0:
+    print(left + 1, right + 1)
+else:
+    segment = pairs[max(pairs.keys())]
+    left, right = segment[0][0], segment[0][1]
+    print(left+1, right+1)
